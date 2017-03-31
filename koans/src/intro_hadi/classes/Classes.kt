@@ -1,5 +1,6 @@
 package intro_hadi.classes
 
+import java.io.IOException
 import java.util.*
 
 /**
@@ -7,7 +8,7 @@ import java.util.*
  */
 
 class Customer(var id: Int, var name: String = "", val yearOfBirth: Int = 1983){
-    var email: String = "";
+    @JvmField var email: String = "";
     init {
         name = name.toUpperCase()
     }
@@ -29,8 +30,31 @@ class Customer(var id: Int, var name: String = "", val yearOfBirth: Int = 1983){
     fun customerAsString(): String{
         return "Id: $id - Name: $name"
     }
+
+    @JvmOverloads fun changeStatus(status: Status = Status.Current){
+
+    }
+
+    @JvmName("preferential") fun makePreferred(){
+
+    }
+
+    @Throws(IOException::class) fun loadStatistics(filename: String) {
+        if (filename == "") {
+            throw IOException("Filename cannot be empty")
+        }
+    }
+
 }
 
+fun Customer.extension() {
+
+}
+
+enum class Status {
+    Current,
+    Past
+}
 // internal modifier means accessible anywhere in the same module
 fun main(args: Array<String>)
 {
